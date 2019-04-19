@@ -1,0 +1,60 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+<div class="title">
+<h1>Rate list</h1>
+</div>
+
+{%endblock%}
+
+{% block content %}
+<div class="col-md-12 text-center">
+{% if recipea_best %}
+
+<div id="centered">
+  <h3 style="color:#a46247" >Best recipes handpicked for you</h3>
+  <br><br>
+
+  <h5>
+
+  {% for reb in recipea_best %}
+
+  <p>
+  {{reb.title}}
+  </p>
+  <p>
+    <a href= "{% url 'blog-info' reb.id %}">
+    <img src="https://spoonacular.com/recipeImages/{{reb.id}}-240x150.jpg"/></a><br><br>
+    </p>
+  {% endfor %}
+  </h5>
+ </div>
+
+{% elif uniquea%}
+</div>
+<div class="col-md-12 text-center">
+<div id="centered">
+  <h3 style="color:#a46247">Best recipes based on others rating</h3><br>
+
+  <h5>
+
+  {% for rec in uniquea %}
+  <p>
+  {{rec.title}}
+  </p>
+
+  <p>
+  <a href= "{% url 'blog-info' rec.id %}">
+  <img src="https://spoonacular.com/recipeImages/{{rec.id}}-240x150.jpg"/></a><br><br>
+  </p>
+  {% endfor %}
+
+</h5>
+
+{% else %}
+    <p>No recipes are available.</p>
+</div>
+</div>
+{% endif %}
+
+
+{% endblock %}

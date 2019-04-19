@@ -1,0 +1,186 @@
+body {
+  background: #fafafa;
+  margin-top: 5rem;
+
+}
+h2, h3, h4, h5, h6 {
+
+}
+h1 {
+  color: #ba68c8;
+  text-align: center;
+  font-family: 'Merienda', cursive;
+}
+
+p {
+  color: #212121;
+}
+
+
+
+ul {
+  margin: 0;
+}
+#wrapper {
+    width: 100%;
+    overflow: hidden; /* will contain if #first is longer than #second */
+}
+#first {
+    width: 50%;
+    float:left;
+
+}
+#second {
+    width: 50%;
+    overflow: hidden; /* will contain if #first is longer than #second */
+}
+
+
+.some-page-wrapper {
+  display: flex;
+  margin: 15px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+
+}
+.borderless {
+ border:none;
+ margin:auto;
+}
+
+.borderless td {
+  padding: 60px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.p1 {
+  font-family: 'Raleway', sans-serif;
+  color: #003b00;
+}
+
+.ingredient {
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bg-steel {
+  background-color: #e1bee7;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #9a8f9d;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 10px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+
+
+
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+.responsive {
+  max-width: 100%;
+  height: auto;
+}
+.rating {
+  overflow: hidden;
+  display: table;
+  font-size: 20px;
+  color: #FFCA00;
+  font-style: normal;
+}
+
+.rating-star {
+  padding: 0 5px;
+  margin: 0;
+  cursor: pointer;
+  display: block;
+  float: right;
+}
+
+.rating-star:after {
+  position: relative;
+  font-family: FontAwesome;
+  content: '\f006';
+}
+
+.rating-star.checked ~ .rating-star:after,
+.rating-star.checked:after {
+  content: '\f005';
+}
+
+.rating:hover .rating-star:after {
+  content: '\f006';
+}
+
+.rating-star:hover ~ .rating-star:after,
+.rating-star:hover:after {
+  content: '\f005' !important;
+}

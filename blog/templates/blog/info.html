@@ -1,0 +1,129 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+
+<div class="title">
+<h1>{{recipe.title}} </h1>
+</div>
+<div class="container-fluid ">
+
+
+<img class="center" src="{{recipe.image}}"/>
+<br>
+
+</div>
+
+{% if user.is_authenticated %}
+
+{% block rates %}
+<div class="container-fluid" align= "center">
+<div class="rate" id= "rate">
+
+
+<fieldset class="rating" id="ratingFields">
+    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Medium - 3 stars"></label>
+    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kind of bad - 2 stars"></label>
+    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Bad - 1 star"></label>
+</fieldset>
+<br/>
+<br/>
+<br>
+<span class= "info"></span>
+<br>
+
+<span class= "info2"></span>
+
+
+</div>
+
+<script>
+
+$(document).ready(function(){
+
+
+  $('#ratingFields').change(function(event){
+    console.log($("[name=rating]:checked").val());
+    $.ajax({
+      method:'POST',
+      url: '/rating',
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+      data:{rating:$("[name=rating]:checked").val(), recipe:{{ recipe.id }}},
+
+      success: function(info){
+        $('.info').html("Your rating is: <b>"+$("[name=rating]:checked").val()+"</b>")
+
+      }
+    })
+    $.ajax({
+
+      url: '/getRating/' + {{ recipe.id }},
+      method: "GET",
+      success: function(resp){
+
+      var txt= JSON.parse(resp)
+        console.log(JSON.parse(resp));
+        $('.info2').html("The average rating is: <b>" +txt.average.toFixed(2)+ "</b>")
+
+      }
+    })
+    })
+
+
+
+
+});
+</script>
+<br>
+
+
+{% endblock %}
+
+
+{% endif %}
+</div>
+<div class="container-fluid ">
+
+{% block joke%}
+
+<h4 style="font-family: 'Slabo 27px', serif;"> Random food joke: (provided by Spoonacular)
+  <br>{{jokes.text}}
+  </h4>
+{% endblock %}
+
+<div id= "wrapper">
+  <p id= "first">Ingredients</p>
+  <p id= "second">Aisle</p>
+
+
+  {% for ingredient in recipe.extendedIngredients %}
+  <div id="first">
+
+      {{ingredient.originalString}}
+
+
+  </div>
+  <div id="second">
+
+
+{{ingredient.aisle}}
+  </div>
+  {% endfor %}
+
+
+
+</div>
+  <br>
+  <h3>Instructions:</h3>
+<div class="container">
+
+
+<p>{{recipe.instructions}}</p>
+</div>
+</div>
+
+
+
+{% endblock %}

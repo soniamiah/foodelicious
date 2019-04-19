@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+<div class="container">
+
+{% block content %}
+<h1>Here are the random recipes</h1>
+{% for r in random %}
+<p>
+
+{{r.title}}
+</p>
+<a href={% url 'blog-info' r.id %} >
+<img src="https://spoonacular.com/recipeImages/{{r.id}}-240x150.jpg"/>
+</a>
+{%endfor%}
+
+</div>
+{% endblock %}

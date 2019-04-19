@@ -1,0 +1,47 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class= "title">
+<h1> Recipes </h1>
+</div>
+
+<div class="col-md-12 text-center">
+  <form method="get">
+    <fieldset class="form-group">
+
+      {{form| crispy }}
+
+    </fieldset>
+    <button type="submit" class="btn btn-outline-info" >Search</button>
+  </form>
+
+<br>
+<br>
+{% if search_result %}
+<div>
+  {% for result in search_result %}
+    <h5>
+
+      <p>
+        {{ result.title }}
+      </p>
+
+      <p>
+      <a href={% url 'blog-info'  result.id %}>
+      <img src="https://spoonacular.com/recipeImages/{{result.id}}-240x150.jpg"/>
+      </a>
+      Preparation time
+      {{result.readyInMinutes}}
+      </p>
+
+
+
+    </h5>
+
+  {% endfor %}
+
+</div>
+</div>
+{% endif %}
+{% endblock %}
